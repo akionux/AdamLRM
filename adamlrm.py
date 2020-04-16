@@ -287,6 +287,7 @@ class AdamLRM(optimizer_v2.OptimizerV2):
         'beta_2': self._serialize_hyperparameter('beta_2'),
         'epsilon': self.epsilon,
         'amsgrad': self.amsgrad,
-        'lr_multiplier': self.lr_multiplier,
     })
+    for k in self._lrm_names:
+      config[k] = self._serialize_hyperparameter(f'lrm_{k}')
     return config
